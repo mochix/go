@@ -1,0 +1,12 @@
+{
+    "name": "mochix/go",
+    "homepage": "https://github.com/mochix/go",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd":"*",
+        "sebastian/phpcpd": "*"
+    }
+}

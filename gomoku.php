@@ -17,10 +17,20 @@ for ($j=0; $j <= count($point_array); $j++) {
         $turn = "black";
         $stone = 0;
     }
+    $range = array('min' => 0, 'max' => $max_point);
     echo $turn."X:";
     $point_x = trim(fgets(STDIN));
+    if (filter_var($point_x, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {
+        echo "once again\n";
+        continue;
+    }
+
     echo $turn."Y:";
     $point_y = trim(fgets(STDIN));
+    if (filter_var($point_y, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {
+        echo "once again\n";
+        continue;
+    }
 
     $point = $point_x * $max_point + $point_y;
 

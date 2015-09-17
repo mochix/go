@@ -9,8 +9,7 @@ $i = 0;// Turn;
 
 // var_dump($point_array);
 
-
-while (1) {
+for ($j=0; $j <= count($point_array); $j++) {
     if ($i%2) {
         $turn = "white";
         $stone = 1;

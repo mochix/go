@@ -1,46 +1,39 @@
 <?php
 // 19x19
-$fumen_ar = array();
+$point_array = array();
 echo "It was placed in the center of the black!\n";
 echo "10 to 10\n\n";
-$zahyou = 19;
-$fumen_ar = array_fill ( 0, $zahyou * $zahyou, "");
-$i = 0;// Turn
+$max_point = 19;
+$point_array = array_fill(0, $max_point * $max_point, "");
+$i = 0;// Turn;
 
-// var_dump($fumen_ar);
+// var_dump($point_array);
+
 
 while (1) {
-	echo "Turn black X : ";
-	$black_x = trim(fgets(STDIN)); // Enter wait
-	echo "Turn black Y : ";
-	$black_y = trim(fgets(STDIN)); // Enter wait
+    if ($i%2) {
+        $turn = "white";
+        $stone = 1;
+    } else {
+        $turn = "black";
+        $stone = 0;
+    }
+    echo $turn."X:";
+    $point_x = trim(fgets(STDIN));
+    echo $turn."Y:";
+    $point_y = trim(fgets(STDIN));
 
-	$black = $black_x * $zahyou + $black_y;
-	if($fumen_ar[$black] == ""){
-		$fumen_ar[$black] = "black";
-	}else{
-		echo "だぶってる";
-		break;
-	}
-	// echo $black."\n\n";
-	// NG check
+    $point = $point_x * $max_point + $point_y;
 
-	echo "Turn white X : ";
-	$white_x = trim(fgets(STDIN)); // Enter wait
-	echo "Turn white Y : ";
-	$white_y = trim(fgets(STDIN)); // Enter wait
+    if ($point_array[$point] === '') {
+        // echo "OK\n";
+        $point_array[$point] = $stone;
+    } else {
+        echo "once again\n";
+        continue;
+    }
 
-	$white = $white_x * $zahyou + $white_y;
-	if($fumen_ar[$white] == ""){
-		$fumen_ar[$white] = "white";
-	}else{
-		echo "だぶってる";
-		break;
-	}
-	// echo $white."\n\n";
-	// NG check
-
-$i++;
+    $i++;
 }
 
-// print_r($fumen_ar);
+// print_r($point_array);

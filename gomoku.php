@@ -6,12 +6,6 @@ $max_point = 19;
 $point_array = array_fill(0, $max_point * $max_point, 0);
 $i = 0; // Turn;
 
-function point_calc($point_x, $max_point, $point_y)
-{
-    $point = $point_x * $max_point + $point_y;
-    return $point;
-}
-
 for ($j=0; $j <= count($point_array); $j++) {
     if ($i%2) {
         $turn = "white";
@@ -36,7 +30,8 @@ for ($j=0; $j <= count($point_array); $j++) {
         continue;
     }
 
-    if ($point_array[point_calc($point_x, $max_point, $point_y)] === '') {
+    require_once 'utils.php';
+    if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
         // echo "OK\n";
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;
     } else {

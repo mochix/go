@@ -15,7 +15,7 @@ for ($j=0; $j <= count($point_array); $j++) {
         $stone = 1;
     }
 
-    $range = array('min' => 0, 'max' => $max_point);
+    $range = array('min_range' => 0, 'max_range' => $max_point);
     echo $turn."X:";
     $point_x = trim(fgets(STDIN)); // Enter
     if (filter_var($point_x, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {

@@ -15,7 +15,7 @@ for ($j=0; $j <= count($point_array); $j++) {
         $stone = 1;
     }
 
-    $range = array('min_range' => 0, 'max_range' => $max_point);
+    $range = array('min_range' => 0, 'max_range' => $max_point-1);
     echo $turn."X:";
     $point_x = trim(fgets(STDIN)); // Enter
     if (filter_var($point_x, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {
@@ -31,11 +31,12 @@ for ($j=0; $j <= count($point_array); $j++) {
     }
 
     require_once 'utils.php';
+    trigger_error(point_calc($point_x, $max_point, $point_y), 1024);
     if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
         // echo "OK\n";
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;
     } else {
-        echo "once again\n";
+        echo "NG\n";
         continue;
     }
 

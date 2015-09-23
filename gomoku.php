@@ -31,7 +31,6 @@ for ($j=0; $j <= count($point_array); $j++) {
     }
 
     require_once 'utils.php';
-    trigger_error(point_calc($point_x, $max_point, $point_y), 1024);
     if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
         // echo "OK\n";
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;

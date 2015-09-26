@@ -10,4 +10,4 @@ script:
 after_script:
   - php vendor/bin/phpcs gomoku.php --standard=PSR2
   - php vendor/bin/phpcpd gomoku.php
-  - php vendor/bin/phpmd lib text codesize,controversial,design,naming,unused code
+  - php vendor/bin/phpmd gomoku.php

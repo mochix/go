@@ -20,7 +20,7 @@ for ($j=0; $j <= count($point_array); $j++) {
     $point_x = trim(fgets(STDIN)); // Enter
     if (filter_var($point_x, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {
         echo "once again".PHP_EOL;
-        continue;
+        continue;// 要見直し
     }
 
     echo $turn."Y:";
@@ -34,10 +34,12 @@ for ($j=0; $j <= count($point_array); $j++) {
     if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
         // echo "OK\n";
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;
+        win_conditions($point_x, $point_y, $max_point, $stone, $point_array);
     } else {
         echo "NG".PHP_EOL;
         continue;
     }
+
 
     $i++;
 }

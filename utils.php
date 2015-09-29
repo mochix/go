@@ -6,28 +6,32 @@ function point_calc($point_x, $max_point, $point_y)
 }
 function win_conditions($point_x, $point_y, $max_point, $stone, $point_array)
 {
-    // 縦の判定
+    // 右の判定
     for ($i=0; $i < 5; $i++) {
+        if ($point_y+$i>$max_point-1) {
+            break;
+        }
         if ($point_array[point_calc($point_x, $max_point, $point_y+$i)]!=$stone) {
             break;
         }
     }
     if ($i==5) {
-        $stone = $stone == 1 ? "black" : "white";
-        echo "Win ".$stone.PHP_EOL;
-        exit();
+        return true;
+    }else{
+        return false;
     }
-    // 横の判定
+    // 下の判定
     for ($j=0; $j < 5; $j++) {
+        if ($point_x+$j>$max_point-1) {
+            break;
+        }
         if ($point_array[point_calc($point_x+$j, $max_point, $point_y)]!=$stone) {
             break;
         }
     }
     if ($j==5) {
-        $stone = $stone == 1 ? "black" : "white";
-        echo "Win ".$stone.PHP_EOL;
-        exit();
+        return true;
+    }else{
+        return false;
     }
-
-
 }

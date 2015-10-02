@@ -31,6 +31,7 @@ function point_search($point_x, $point_y, $max_point, $stone, $point_array)
             $point_search[$direction_key] = $point_search[$direction_key] + $i;
         }
     }
+    return $point_search;
 }
 function win_conditions($point_x, $point_y, $max_point, $stone, $point_array)
 {

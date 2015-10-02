@@ -34,10 +34,11 @@ for ($j=0; $j <= count($point_array); $j++) {
     if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
         // echo "OK\n";
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;
-        if (win_conditions($point_x, $point_y, $max_point, $stone, $point_array)===true) {
-            echo "Win".$turn.PHP_EOL;
-            break;
-        }
+        point_search($point_x, $point_y, $max_point, $stone, $point_array);
+        // if (win_conditions($point_x, $point_y, $max_point, $stone, $point_array)===true) {
+        //     echo "Win".$turn.PHP_EOL;
+        //     break;
+        // }
     } else {
         echo "NG".PHP_EOL;
         continue;

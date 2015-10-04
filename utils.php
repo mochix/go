@@ -29,7 +29,7 @@ function point_search($point_x, $point_y, $max_point, $stone, $point_array)
             if ($point_array[point_calc($x, $max_point, $y)]!=$stone) {
                 break;
             }
-            $point_search[$direction_key] = $point_search[$direction_key] + $i;
+            $point_search[$direction_key] = $i;
         }
     }
     return $point_search;

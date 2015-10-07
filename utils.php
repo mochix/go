@@ -20,7 +20,7 @@ function point_search($point_x, $point_y, $max_point, $stone, $point_array)
     $point_search = [];
     foreach ($direction as $direction_key => $direction_val) {
         $point_search[$direction_key] = 0;
-        for ($i=0; $i < 5; $i++) {
+        for ($i=1; $i < 5; $i++) {
             $x = $point_x + ($i * $direction_val[0]);
             $y = $point_y + ($i * $direction_val[1]);
             if (($x < 0 || $x > $max_point-1) || ($y < 0 || $y > $max_point-1)) {
@@ -32,7 +32,6 @@ function point_search($point_x, $point_y, $max_point, $stone, $point_array)
             $point_search[$direction_key] = $i;
         }
     }
-    var_dump($point_search);
     return $point_search;
 }
 function win_conditions($point_search)

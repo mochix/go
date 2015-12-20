@@ -25,14 +25,16 @@ for ($j=0; $j <= count($point_array); $j++) {
         $stone = Disk::DISK_BLACK;
     }
 
-    $range = array('min_range' => 0, 'max_range' => $board->getRow() - 1);
     foreach(['x','y'] as $index) {
         $point = 'point_' . $index;
-        echo $turn . strtoupper($index) . ':';
-        $$point = trim(fgets(STDIN));
-        if (filter_var($$point, FILTER_VALIDATE_INT, ['options' => $range]) === false) {
-            echo "once again" . PHP_EOL;
-            continue;
+        while(true){
+            echo $turn . strtoupper($index) . ':';
+            $$point = trim(fgets(STDIN));
+            if (!$board->isInclude($$point)) {
+                echo "once again" . PHP_EOL;
+                continue;
+            }
+            break;
         }
     }
     

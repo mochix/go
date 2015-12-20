@@ -19,4 +19,13 @@ class Board {
     public function getRow() {
         return $this->row;
     }
+
+    public function isInclude($index){
+        $range = ['min_range' => 0, 'max_range' => $this->row - 1];
+        if(filter_var($index, FILTER_VALIDATE_INT, ['options' => $range]) === false){
+            return false;
+        }
+        return true;
+    }
+
 }

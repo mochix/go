@@ -9,5 +9,10 @@
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "*",
         "sebastian/phpcpd": "*"
+    },
+    "autoload": {
+      "psr-4": {
+        "Mochix\\Go\\": "lib"
+      }
     }
 }

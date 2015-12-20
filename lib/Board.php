@@ -33,6 +33,9 @@ class Board {
     }
 
     public function setDisk($row, $col, $disk){
+        if ($this->getDisk($row, $col) !== 0) {
+            throw new \InvalidArgumentException('');
+        }
         $num = $row * $this->row + $col;
         $this->board[$num] = $disk;
     }

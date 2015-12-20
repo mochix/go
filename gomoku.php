@@ -11,7 +11,6 @@ echo "10 to 10" . PHP_EOL;
 $board = new Board(19);
 $turn = Disk::DISK_BLACK; // Turn;
 
-
 while(!$board->isFull()) {
     foreach(['x','y'] as $index) {
         $point = 'point_' . $index;
@@ -27,11 +26,11 @@ while(!$board->isFull()) {
             break;
         }
     }
-    
-    if ($board->getDisk($point_x, $point_y) === 0) {
+
+    try {
         $board->setDisk($point_x, $point_y, $stone);
         $point_search = point_search($point_x, $point_y, $board->getRow(), $stone, $board->getBoard());
-    } else {
+    } catch (\InvalidArgumentException $e) {
         echo "NG" . PHP_EOL;
         continue;
     }

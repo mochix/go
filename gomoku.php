@@ -5,18 +5,13 @@ require_once 'utils.php';
 use Mochix\Go\Disk;
 use Mochix\Go\Board;
 
-
-$point_array = [];
-
 echo "It was placed in the center of the black!" . PHP_EOL;
 echo "10 to 10" . PHP_EOL;
 
-
 $board = new Board(19);
-$point_array = array_fill(0, $board->getRow() * $board->getRow(), 0);
 $i = 0; // Turn;
 
-for ($j=0; $j <= count($point_array); $j++) {
+for ($j=0; $j <= $board->getCount(); $j++) {
     if ($i%2) {
         $turn = "white";
         $stone = Disk::DISK_WHITE;
@@ -38,11 +33,11 @@ for ($j=0; $j <= count($point_array); $j++) {
         }
     }
     
-    if ($point_array[point_calc($point_x, $board->getRow(), $point_y)] === 0) {
-        $point_array[point_calc($point_x, $board->getRow(), $point_y)] = $stone;
-        $point_search = point_search($point_x, $point_y, $board->getRow(), $stone, $point_array);
+    if ($board->getDisk($point_x, $point_y) === 0) {
+        $board->setDisk($point_x, $point_y, $stone);
+        $point_search = point_search($point_x, $point_y, $board->getRow(), $stone, $board->getBoard());
     } else {
-        echo "NG".PHP_EOL;
+        echo "NG" . PHP_EOL;
         continue;
     }
     $i++;

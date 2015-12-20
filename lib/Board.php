@@ -12,12 +12,34 @@ class Board {
 
     private $row = 0;
 
+    private $board = [];
+
     public function __construct($row = 19){
         $this->row = $row;
+        $this->board = array_fill(0, $this->row * $this->row, 0);
     }
 
     public function getRow() {
         return $this->row;
+    }
+
+    public function getCount() {
+        return count($this->board);
+    }
+
+    public function getDisk($row, $col) {
+        $num = $row * $this->row + $col;
+        return $this->board[$num];
+    }
+
+    public function setDisk($row, $col, $disk){
+        $num = $row * $this->row + $col;
+        $this->board[$num] = $disk;
+    }
+
+    // 一時的
+    public function getBoard(){
+        return $this->board;
     }
 
     public function isInclude($index){

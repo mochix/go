@@ -1,6 +1,8 @@
 <?php
-
+require_once 'vendor/autoload.php';
 require_once 'utils.php';
+
+use Mochix\Go\Disk;
 
 $point_array = [];
 
@@ -13,10 +15,10 @@ $i = 0; // Turn;
 for ($j=0; $j <= count($point_array); $j++) {
     if ($i%2) {
         $turn = "white";
-        $stone = 2;
+        $stone = Disk::DISK_WHITE;
     } else {
         $turn = "black";
-        $stone = 1;
+        $stone = Disk::DISK_BLACK;
     }
 
     $range = array('min_range' => 0, 'max_range' => $max_point-1);

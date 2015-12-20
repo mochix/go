@@ -1,7 +1,11 @@
 <?php
-$point_array = array();
-echo "It was placed in the center of the black!".PHP_EOL;
-echo "10 to 10".PHP_EOL;
+
+require_once 'utils.php';
+
+$point_array = [];
+
+echo "It was placed in the center of the black!" . PHP_EOL;
+echo "10 to 10" . PHP_EOL;
 $max_point = 19;
 $point_array = array_fill(0, $max_point * $max_point, 0);
 $i = 0; // Turn;
@@ -30,21 +34,12 @@ for ($j=0; $j <= count($point_array); $j++) {
         continue;
     }
 
-    require_once 'utils.php';
     if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
-        // echo "OK\n";
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;
         $point_search = point_search($point_x, $point_y, $max_point, $stone, $point_array);
-        // if (win_conditions($point_search)===true) {
-        //     echo "Win".$turn.PHP_EOL;
-        //     break;
-        // }
     } else {
         echo "NG".PHP_EOL;
         continue;
     }
     $i++;
 }
-
-
-// print_r($point_array);

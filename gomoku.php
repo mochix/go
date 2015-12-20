@@ -20,20 +20,16 @@ for ($j=0; $j <= count($point_array); $j++) {
     }
 
     $range = array('min_range' => 0, 'max_range' => $max_point-1);
-    echo $turn."X:";
-    $point_x = trim(fgets(STDIN)); // Enter
-    if (filter_var($point_x, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {
-        echo "once again".PHP_EOL;
-        continue;// 要見直し
+    foreach(['x','y'] as $index) {
+        $point = 'point_' . $index;
+        echo $turn . strtoupper($index) . ':';
+        $$point = trim(fgets(STDIN));
+        if (filter_var($$point, FILTER_VALIDATE_INT, ['options' => $range]) === false) {
+            echo "once again" . PHP_EOL;
+            continue;
+        }
     }
-
-    echo $turn."Y:";
-    $point_y = trim(fgets(STDIN)); // Enter
-    if (filter_var($point_y, FILTER_VALIDATE_INT, array('options'=>$range)) === false) {
-        echo "once again".PHP_EOL;
-        continue;
-    }
-
+    
     if ($point_array[point_calc($point_x, $max_point, $point_y)] === 0) {
         $point_array[point_calc($point_x, $max_point, $point_y)] = $stone;
         $point_search = point_search($point_x, $point_y, $max_point, $stone, $point_array);

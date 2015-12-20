@@ -42,6 +42,15 @@ class Board {
         return $this->board;
     }
 
+    public function isFull() {
+        foreach ($this->board as $disk) {
+            if ($disk === 0 /* temp */ ) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public function isInclude($index){
         $range = ['min_range' => 0, 'max_range' => $this->row - 1];
         if(filter_var($index, FILTER_VALIDATE_INT, ['options' => $range]) === false){

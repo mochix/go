@@ -89,7 +89,7 @@ class Board {
      *
      *  @access public
      *  @param  int $row    盤面の行数を指定する(初期値は19).
-     */
+    */
     public function __construct($row = 19)
     {
         $this->row = $row;

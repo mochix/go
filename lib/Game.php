@@ -99,6 +99,6 @@ class Game implements \IteratorAggregate
      */
 	public function getTurn() 
 	{
-		return $this->turn;
+        return $this->turn;
 	}
 }

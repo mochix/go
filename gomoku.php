@@ -1,6 +1,5 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'utils.php';
 
 use Mochix\Go\Disk;
 use Mochix\Go\Board;
@@ -29,7 +28,9 @@ while(!$board->isFull()) {
 
     try {
         $board->setDisk($point_x, $point_y, $turn);
-        $point_search = point_search($point_x, $point_y, $board->getRow(), $turn, $board->getBoard());
+        if($board->isWin($point_x, $point_y, $turn)){
+            break;
+        }
     } catch (\InvalidArgumentException $e) {
         echo "NG" . PHP_EOL;
         continue;

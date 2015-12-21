@@ -1,14 +1,5 @@
 <?php
-$direction = array(
-    'right' => [0,1],
-    'left' => [0,-1],
-    'top' => [1,0],
-    'bottom' => [-1,0],
-    'right_top' => [1,1],
-    'right_bottom' => [-1,1],
-    'left_top' => [1,-1],
-    'left_bottom' => [-1,-1],
-);
+
 function point_calc($point_x, $max_point, $point_y)
 {
     $point = $point_x * $max_point + $point_y;
@@ -16,7 +7,17 @@ function point_calc($point_x, $max_point, $point_y)
 }
 function point_search($point_x, $point_y, $max_point, $stone, $point_array)
 {
-    global $direction;
+    $direction = [
+        'right' => [0,1],
+        'left' => [0,-1],
+        'top' => [1,0],
+        'bottom' => [-1,0],
+        'right_top' => [1,1],
+        'right_bottom' => [-1,1],
+        'left_top' => [1,-1],
+        'left_bottom' => [-1,-1],
+    ];
+    
     $point_search = [];
     foreach ($direction as $direction_key => $direction_val) {
         $point_search[$direction_key] = 0;

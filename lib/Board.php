@@ -8,6 +8,8 @@
 
 namespace Mochix\Go;
 
+require_once 'utils.php';
+
 class Board {
 
     private $row = 0;
@@ -52,6 +54,12 @@ class Board {
             }
         }
         return true;
+    }
+
+    public function isWin($row, $col, $turn)
+    {
+        $point_search = \point_search($row, $col, $this->row, $turn, $this->board);
+        return \win_conditions($point_search);
     }
 
     public function isInclude($index){

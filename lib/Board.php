@@ -10,8 +10,6 @@ namespace Mochix\Go;
 
 use Mochix\Go\Disk;
 
-require_once 'utils.php';
-
 /**
  *  The board class.
  */

@@ -9,7 +9,7 @@ echo "It was placed in the center of the black!" . PHP_EOL;
 echo "10 to 10" . PHP_EOL;
 
 $board = new Board(19);
-$turn = Disk::DISK_BLACK; // Turn;
+$turn  = Disk::DISK_BLACK; // Turn;
 
 while(!$board->isFull()) {
     foreach(['x','y'] as $index) {
@@ -28,8 +28,8 @@ while(!$board->isFull()) {
     }
 
     try {
-        $board->setDisk($point_x, $point_y, $stone);
-        $point_search = point_search($point_x, $point_y, $board->getRow(), $stone, $board->getBoard());
+        $board->setDisk($point_x, $point_y, $turn);
+        $point_search = point_search($point_x, $point_y, $board->getRow(), $turn, $board->getBoard());
     } catch (\InvalidArgumentException $e) {
         echo "NG" . PHP_EOL;
         continue;

@@ -4,12 +4,21 @@
     "require": {
         "php": ">=5.5.0"
     },
-    "require": {
-        "phpunit/phpunit": "*"
-    },
     "require-dev": {
+        "phpunit/phpunit": "*",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "*",
-        "sebastian/phpcpd": "*"
+        "sebastian/phpcpd": "*",
+        "satooshi/php-coveralls": "*"
+    },
+    "autoload": {
+      "psr-4": {
+        "Mochix\\Go\\": "lib"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Mochix\\Go\\Test\\": "tests"
+      }
     }
 }

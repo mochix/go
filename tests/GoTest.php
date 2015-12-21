@@ -51,7 +51,7 @@ class White implements Playable
     protected $index = 0;
 
     protected $position = [
-        ['x' =>  0, 'y' =>  0],
+        ['x' =>  2, 'y' =>  2],
         ['x' => 18, 'y' => 18],
         ['x' =>  1, 'y' =>  1],
         ['x' => 17, 'y' => 17]];
@@ -105,6 +105,7 @@ class GoTest extends \PHPUnit_Framework_TestCase
         $this->instance->setPlayer(new Black($row, $col), Disk::DISK_BLACK);
         $this->instance->setPlayer(new White(), Disk::DISK_WHITE);
         foreach($this->instance as $turn => $board){
+        
         }
         $this->assertEquals(true, $this->instance->getWinner());
     }

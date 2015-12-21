@@ -209,7 +209,7 @@ class Board {
                 }
 
                 $disk = $this->getDisk($pos->row, $pos->col);
-                if (!$disk === $turn)
+                if ($disk !== $turn)
                 {
                     break;
                 }
@@ -234,10 +234,10 @@ class Board {
     {
         // 指定位置から見た八方向の盤面の状態を取得する.
         $env = $this->search($row, $col, $turn);
- //       var_dump($env);
 
         // 取得した周辺状態を元に勝利条件を満たしているかを判定する.
-        foreach (range(1, 4) as $direction) {
+        foreach (range(1, 4) as $direction) 
+        {
             if ($env[$direction] + $env[-$direction] >= 4) {
                 return true;
             }

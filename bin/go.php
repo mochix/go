@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use Mochix\Go\Disk;
 use Mochix\Go\Board;
@@ -31,8 +31,6 @@ class Player implements Playable {
         echo 'NG' . PHP_EOL;
     }
 }
-
-
 
 echo "It was placed in the center of the black!" . PHP_EOL;
 echo "10 to 10" . PHP_EOL;

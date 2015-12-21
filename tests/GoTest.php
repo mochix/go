@@ -64,6 +64,29 @@ class White implements Playable
     public function isSame(){}
 }
 
+class Middle implements Playable
+{
+    protected $index = 0;
+
+    protected $position = [
+        ['x' =>  0, 'y' => 0],
+        ['x' =>  0, 'y' => 4],
+        ['x' =>  0, 'y' => 1],
+        ['x' =>  0, 'y' => 3],
+        ['x' =>  0, 'y' => 2]
+    ];
+
+    public function input($board, $turn)
+    {
+        return $this->position[$this->index++];
+    }
+
+    public function isSame(){}
+}
+
+
+
+
 class GoTest extends \PHPUnit_Framework_TestCase
 {
     protected $instance = null;
@@ -85,6 +108,19 @@ class GoTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertEquals(true, $this->instance->getWinner());
     }
+
+    public function testMiddle()
+    {
+        $this->assertEquals(false, $this->instance->getWinner());
+        $this->instance->setPlayer(new Middle(), Disk::DISK_BLACK);
+        $this->instance->setPlayer(new White() , Disk::DISK_WHITE);
+        foreach($this->instance as $turn => $board){
+            
+        }
+        $this->assertEquals(true, $this->instance->getWinner());
+    }
+
+
 
     public function provideDistances()
     {

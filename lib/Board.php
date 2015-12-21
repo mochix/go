@@ -18,6 +18,63 @@ require_once 'utils.php';
 class Board {
 
     /**
+     *  検索方向[上]
+     */
+    const DIRECTION_UP = 1;
+
+    /**
+     *  検索方向[下]
+     */
+    const DIRECTION_DOWN = -1;
+
+    /**
+     *  検索方向[右]
+     */
+    const DIRECTION_RIGHT = 2;
+
+    /**
+     * 　検索方向[左]
+     */
+    const DIRECTION_LEFT = -2;
+
+    /**
+     *  検索方向[右下]
+     */
+    const DIRECTION_LOWER_RIGHT = 3;
+
+    /**
+     *  検索方向[左上]
+     */
+    const DIRECTION_UPPER_LEFT = -3;
+
+    /**
+     *  検索方向[右上]
+     */
+    const DIRECTION_UPPER_RIGHT = 4;
+
+    /**
+     *  検索方向[右下]
+     */
+    const DIRECTION_LOWER_LEFT = -4;
+
+
+    /**
+     *  @var array $directions
+     *
+     *  勝利条件判定時に周辺方向を探索する際に使用するオフセット.
+     */
+    protected static $directions = [
+        Board::DIRECTION_UP          => [-1, 0],
+        Board::DIRECTION_DOWN        => [ 1, 0],
+        Board::DIRECTION_RIGHT       => [ 0, 1],
+        Board::DIRECTION_LEFT        => [ 0,-1],
+        Board::DIRECTION_LOWER_RIGHT => [ 1, 1],
+        Board::DIRECTION_UPPER_LEFT  => [-1,-1],
+        Board::DIRECTION_UPPER_RIGHT => [-1, 1],
+        Board::DIRECTION_LOWER_LEFT  => [ 1,-1]
+    ];
+
+    /**
      *  @var array $board   盤面状態を管理する一次元配列.
      */
     protected $board = null;
@@ -165,5 +222,4 @@ class Board {
     {
         return ($row * $this->row) + $col;
     }
-
 }

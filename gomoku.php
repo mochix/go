@@ -12,23 +12,9 @@ $board = new Board(19);
 $game  = new Game(19, Disk::DISK_BLACK);
 
 while(!$board->isFull()) {
-    foreach(['x','y'] as $index) {
-        $point = 'point_' . $index;
-        while(true){
-            $message = ($game->getTurn() === Disk::DISK_BLACK) ? "black" : "white";
-
-            echo $message . strtoupper($index) . ':';
-            $$point = trim(fgets(STDIN));
-            if (!$board->isInclude($$point)) {
-                echo "once again" . PHP_EOL;
-                continue;
-            }
-            break;
-        }
-    }
-
+    $location = input($board, $game->getTurn());
     try {
-        if($board->setDisk($point_x, $point_y, $game->getTurn())){
+        if($board->setDisk($location['x'], $location['y'], $game->getTurn())){
             break;
         }
     } catch (\InvalidArgumentException $e) {
@@ -36,4 +22,24 @@ while(!$board->isFull()) {
         continue;
     }
     $game->next();
+}
+
+
+/** 入力関数 **/
+function input($board, $turn) {
+    $location = [];
+    foreach(['x','y'] as $index) {
+        while(true) {
+            $message = ($turn === Disk::DISK_BLACK) ? "black" : "white";
+            echo $message . strtoupper($index) . ':';
+            $disk = trim(fgets(STDIN));
+            if (!$board->isInclude($disk)) {
+                echo "once again" . PHP_EOL;
+                continue;
+            }
+            $location[$index] = $disk;
+            break;
+        }
+    }
+    return $location;
 }

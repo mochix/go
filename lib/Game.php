@@ -17,10 +17,20 @@ use Mochix\Go\Playable;
  */
 class Game implements \IteratorAggregate 
 {
+    /**
+     *  @var ゲームターン(黒)
+     */
+    const GAMETURN_BLACK = Disk::DISK_BLACK;
+
+    /**
+     *  @var ゲームターン(黒)
+     */
+    const GAMETURN_WHITE = Disk::DISK_WHITE;
+
 	/**
      *  @var int $turn   ターン状態.
      */
-	private $turn = Disk::DISK_BLACK;
+	private $turn = Game::GAMETURN_BLACK;
 
 	/**
      *  @var Board $board 　	ゲーム盤面を保持.
@@ -44,7 +54,7 @@ class Game implements \IteratorAggregate
      *  @param  int $row    盤面の行数を指定する(初期値は19).
      *	@param  int $turn   先行側の色を指定する(初期値は黒).
      */
-	public function __construct($row = 19, $turn = Disk::DISK_BLACK) 
+	public function __construct($row = 19, $turn = Game::GAMETURN_BLACK) 
 	{
 		$this->board = new Board($row);
 		$this->turn  = $turn;
@@ -91,7 +101,8 @@ class Game implements \IteratorAggregate
         		$this->turn = ($this->turn === Disk::DISK_BLACK) ? Disk::DISK_WHITE : Disk::DISK_BLACK;
         	// 同じ位置に対する入力があった場合
     		} catch  (\InvalidArgumentException $e) {
-    			$player->isSame();
+                // イベント呼び出し。
+                $player->isSame();
     			continue;
     		}
     	}

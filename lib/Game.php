@@ -32,6 +32,11 @@ class Game implements \IteratorAggregate
      */
 	protected $players = [];
 
+    /**
+     *  @var int/bool $win      勝利プレイヤー
+     */
+    protected $winner = false;
+
 	/**
      *  コンストラクタ.
      *
@@ -77,7 +82,8 @@ class Game implements \IteratorAggregate
     			if($this->board->setDisk($location['x'], $location['y'], $this->turn))
     			{
     				// 勝利条件が成立
-            		break;
+                    $this->winner = $this->turn;
+                    break;
         		}
         		// 勝利条件が不成立.
         		yield $this->turn => $this->board->getMatrix();
@@ -98,7 +104,18 @@ class Game implements \IteratorAggregate
      * @return  int
      */
 	public function getTurn() 
-	{
+    {
         return $this->turn;
-	}
+    }
+
+    /**
+     *  勝利者を取得する.
+     *
+     *  @access public
+     *  @return int/bool
+     */
+    public function getWinner()
+    {
+        return $this->winner;
+    }
 }

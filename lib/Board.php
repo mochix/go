@@ -41,7 +41,7 @@ class Board {
         $num = $row * $this->row + $col;
         $this->board[$num] = $disk;
 
-        return $this->isWin($row, $col, $turn);
+        return $this->isWin($row, $col, $disk);
     }
 
     // 一時的

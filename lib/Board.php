@@ -40,6 +40,8 @@ class Board {
         }
         $num = $row * $this->row + $col;
         $this->board[$num] = $disk;
+
+        return $this->isWin($row, $col, $turn);
     }
 
     // 一時的
@@ -56,7 +58,7 @@ class Board {
         return true;
     }
 
-    public function isWin($row, $col, $turn)
+    private function isWin($row, $col, $turn)
     {
         $point_search = \point_search($row, $col, $this->row, $turn, $this->board);
         return \win_conditions($point_search);

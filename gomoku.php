@@ -27,8 +27,7 @@ while(!$board->isFull()) {
     }
 
     try {
-        $board->setDisk($point_x, $point_y, $turn);
-        if($board->isWin($point_x, $point_y, $turn)){
+        if($board->setDisk($point_x, $point_y, $turn)){
             break;
         }
     } catch (\InvalidArgumentException $e) {

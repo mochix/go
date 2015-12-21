@@ -156,7 +156,6 @@ class Board {
         return $this->isWin($row, $col, $disk);
     }
 
-
     /**
      *  盤面が石で埋め尽くされているか(空白が存在せず、配置場所が存在しない)を判定する.
      *
@@ -196,6 +195,32 @@ class Board {
         return $matrix;
     }
 
+    private function search($row, $col, $turn)
+    {
+        $search = [];
+        foreach (Board::$directions as $direction => $diff)
+        {
+            $search[$direction] = 0;
+            foreach (range(1, 4) as $index) {
+                $pos = new \stdClass;
+                $pos->row = $row + ($diff[0] * $index);
+                $pos->col = $col + ($diff[1] * $index);
+
+                if (!$this->isInclude($pos->row) || !$this->isInclude($pos->col)) {
+                    break;
+                }
+
+                $disk = $this->getDisk($pos->row, $pos->col);
+                if (!$disk === $turn)
+                {
+                    break;
+                }
+                $search[$direction] = $index;
+            }
+        }
+        return $search;
+    }
+
 
 
     /**
@@ -210,9 +235,16 @@ class Board {
     private function isWin($row, $col, $turn)
     {
         // 指定位置から見た八方向の盤面の状態を取得する.
-        $point_search = \point_search($row, $col, $this->row, $turn, $this->board);
+        $env = $this->search($row, $col, $turn);
+ //       var_dump($env);
+
         // 取得した周辺状態を元に勝利条件を満たしているかを判定する.
-        return \win_conditions($point_search);
+        foreach (range(1, 4) as $direction) {
+            if ($env[$direction] + $env[-$direction] >= 4) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

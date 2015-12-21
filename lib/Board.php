@@ -176,6 +176,29 @@ class Board {
     }
 
     /**
+     *  盤面状態を二次元配列で取得する.
+     *
+     *  @access public
+     *  @param  void
+     *  @return array
+     */
+    public function getMatrix()
+    {
+        $matrix = [];
+        foreach ($this->board as $index => $disk) {
+            $row = (int)($index / $this->row);
+            $col = (int)($index % $this->row);
+            if ($col === 0) {
+                $ret[$row] = [];
+            }
+            $matrix[$row][$col] = $disk;
+        }
+        return $matrix;
+    }
+
+
+
+    /**
      *  勝利条件を満たしているかを確認する.
      *
      *  @access private

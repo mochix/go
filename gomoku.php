@@ -33,6 +33,7 @@ class Player implements Playable {
 }
 
 
+
 echo "It was placed in the center of the black!" . PHP_EOL;
 echo "10 to 10" . PHP_EOL;
 
@@ -41,6 +42,19 @@ $game = new Game(19, Disk::DISK_BLACK);
 $game->setPlayer(new Player(), Disk::DISK_BLACK);
 $game->setPlayer(new Player(), Disk::DISK_WHITE);
 
-foreach($game as $turn => $board) {
+foreach($game as $turn => $board) 
+{
     // 画面表示処理.
+    foreach($board as $row) {
+        foreach($row as $disk){
+            if($disk === Disk::DISK_EMPTY){
+                echo '-';
+            }else if($disk === Disk::DISK_BLACK) {
+                echo '●';
+            }else if($disk === Disk::DISK_WHITE) {
+                echo '○';
+            }
+        }
+        echo PHP_EOL;
+    }
 }

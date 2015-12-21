@@ -80,7 +80,7 @@ class Game implements \IteratorAggregate
             		break;
         		}
         		// 勝利条件が不成立.
-        		yield $this->turn => $this->board;
+        		yield $this->turn => $this->board->getMatrix();
         		// ターンを次へ
         		$this->turn = ($this->turn === Disk::DISK_BLACK) ? Disk::DISK_WHITE : Disk::DISK_BLACK;
         	// 同じ位置に対する入力があった場合
